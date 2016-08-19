@@ -1,0 +1,54 @@
+easy problems:
+
+344. reverse a string 
+class Solution(object):
+    def reverseString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        #return ''.join(s[i] for i in range(len(s)-1,-1,-1))
+        return s[::-1]
+        
+  
+  292. Nim Game
+  class Solution(object):
+    def canWinNim(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        return  False if n %4 == 0 else True
+    
+    
+    371. Sum of Two Integers: no use of +,-
+    python code run out of time limit,,,so  change to c++.
+    loop carry,add carry.
+    class Solution {
+    public:
+    int getSum(int a, int b) {
+        int sum=a;
+        int carry=b;
+        int tmp;
+        while (carry){
+            tmp=sum;
+            sum^=carry;
+            carry=(tmp & carry) << 1;
+        }
+        return sum;
+    }
+};
+
+
+    258. Add Digits
+      get inspired by  hints: https://en.wikipedia.org/wiki/Digital_root.  feel so sorry for myself.
+      
+     class Solution(object):
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        if num==0 :
+            return 0
+        return 1+(num-1) % 9
