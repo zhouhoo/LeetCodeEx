@@ -76,3 +76,25 @@ class Solution(object):
             self.invertTree(root.right)
         root.left, root.right = root.right, root.left
         return root
+
+    141. Linked List Cycle:
+    # not pass all the testcase,,,,why?
+    
+        def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        if not head or not head.next:
+            return False
+            
+        p = head
+        q = head.next
+        
+        while p and q.next:
+            
+            if p == q:
+                return True
+            p = p.next
+            q = q.next.next
+        return False
