@@ -78,23 +78,46 @@ class Solution(object):
         return root
 
     141. Linked List Cycle:
-    # not pass all the testcase,,,,why?
-    
-        def hasCycle(self, head):
+    def hasCycle(self, head):
         """
         :type head: ListNode
         :rtype: bool
         """
+        # fast and slow pointer , if cycle is there, fast can catch up slow in next round.
         if not head or not head.next:
             return False
             
         p = head
         q = head.next
         
-        while p and q.next:
+        while p and q:
             
             if p == q:
                 return True
             p = p.next
-            q = q.next.next
+            if q.next:
+                q = q.next.next
+            else:
+                return False
         return False
+
+198. House Robber
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+    
+        house_ct = len(nums)
+        
+        if house_ct :
+            money_rob = [0]*(house_ct+1)
+            money_rob[1] = nums[0]
+        else:
+            return 0
+        
+        for i in range(2,house_ct+1):
+            
+            money_rob[i] = max(money_rob[i-1],money_rob[i-2]+nums[i-1])
+            
+        return money_rob[house_ct]
