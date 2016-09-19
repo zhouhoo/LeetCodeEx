@@ -121,3 +121,28 @@ class Solution(object):
             money_rob[i] = max(money_rob[i-1],money_rob[i-2]+nums[i-1])
             
         return money_rob[house_ct]
+
+107. Binary Tree Level Order Traversal II
+
+def levelOrderBottom(self, root):
+        """
+        learn to know how to travel a tree level by level.
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        node_list = []
+        if not root:
+            return node_list
+        parent_level = [root]
+        while parent_level:
+            
+            node_list.append([n.val for n in parent_level])# add current lever node in results
+            child_level = []
+            for node in parent_level:#  move to next level
+                if node.left:
+                    child_level.append(node.left)
+                if node.right:
+                    child_level.append(node.right)
+            parent_level = child_level
+        node_list.reverse()# down to up.
+        return node_list
