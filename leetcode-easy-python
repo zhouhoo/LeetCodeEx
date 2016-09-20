@@ -146,3 +146,19 @@ def levelOrderBottom(self, root):
             parent_level = child_level
         node_list.reverse()# down to up.
         return node_list
+101. Symmetric Tree
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def is_balance(left,right):
+            if not left and not right:
+                return True
+            if (left and not right) or (not left and right) or left.val != right.val:
+                return False
+            return is_balance(left.left,right.right) and is_balance(left.right,right.left)
+        
+        if not root:
+            return True
+        return is_balance(root.left,root.right)
