@@ -162,3 +162,42 @@ def levelOrderBottom(self, root):
         if not root:
             return True
         return is_balance(root.left,root.right)
+396. Rotate Function
+    # my code, time exceeded.-_-
+    
+   def maxRotateFunction(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        if not A:
+            return 0
+            
+        def list_rotate(l,k):
+            return l[k:]+l[:k]
+            
+        lens = len(A)
+        index_range = range(lens)
+        index = list(index_range)
+        
+        return max([sum([x*y for x,y in zip(list_rotate(A,k),index)]) for k in index_range])
+        
+        # after online help: 
+        def maxRotateFunction(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        if not A:
+            return 0
+            
+        s = sum(A)
+        n = len(A)
+        
+        max_sum = sum([x*y for x,y in zip(A,range(n))])
+        tmp = max_sum
+        for i in range(1,n):
+            tmp = tmp + s - n*A[n-i]
+            if tmp > max_sum:
+                max_sum = tmp
+        return max_sum
