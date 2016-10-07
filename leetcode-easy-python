@@ -249,3 +249,23 @@ def generate(self, numRows):
         if carry:
             digits.insert(0,carry)
         return digits
+337. House Robber III
+#not AC yet..but why?
+ def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dp(root):
+            if not root:
+                return 0,0
+            left_steal,left_not_steal = dp(root.left)
+            right_steal,right_not_steal = dp(root.right)
+            
+            root_not_steal = max(left_steal,left_not_steal) + max(right_steal,right_not_steal)
+            
+            root_steal = left_not_steal + right_not_steal + root.val
+            
+            return root_not_steal,root_steal
+        steal,not_steal = dp(root)
+        return max(steal,not_steal)
