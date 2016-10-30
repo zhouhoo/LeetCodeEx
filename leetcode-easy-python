@@ -300,3 +300,27 @@ class Solution(object):
             return self.findKth(A[k / 2:], B, k - k / 2)
         return self.findKth(A, B[k / 2:], k - k / 2)
  
+17. Letter Combinations of a Phone Number
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        
+        if not digits:
+            return []
+            
+        dict = {'2':['a','b','c'],
+                '3':['d','e','f'],
+                '4':['g','h','i'],
+                '5':['j','k','l'],
+                '6':['m','n','o'],
+                '7':['p','q','r','s'],
+                '8':['t','u','v'],
+                '9':['w','x','y','z'],
+                '1':['*'],
+                '0':[' ']
+                }
+        ll = [dict[key] for key in digits]
+        
+        return [''.join(item) for item in itertools.product(*ll)]
