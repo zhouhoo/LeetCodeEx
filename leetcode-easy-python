@@ -324,3 +324,21 @@ class Solution(object):
         ll = [dict[key] for key in digits]
         
         return [''.join(item) for item in itertools.product(*ll)]
+        
+19. Remove Nth Node From End of List
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        res = ListNode(0)
+        res.next = head
+        tmp = res
+        for i in range(0, n):
+            head = head.next
+        while head != None:
+            head = head.next
+            tmp = tmp.next
+        tmp.next = tmp.next.next
+        return res.next
